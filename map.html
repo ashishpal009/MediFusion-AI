@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharmacy Integration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+background-image: url('static/IMG_20241227_121441_214.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            padding: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 40px;
+            margin-bottom: 30px;
+        }
+
+        .section {
+            background-color: #fff;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            color: #333;
+            font-size: 26px;
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #f9f9f9;
+        }
+
+        .form-group button {
+            background-color: #e74c3c;
+            color: white;
+            padding: 10px 15px; /* Smaller padding */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px; /* Smaller font size */
+            transition: background-color 0.3s ease;
+            width: auto;
+            margin-top: 15px;
+            display: inline-block;
+        }
+
+        .form-group button:hover {
+            background-color: #c0392b;
+        }
+
+        .suggestions {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            font-size: 18px;
+            color: #333;
+            display: none;
+        }
+
+        .form-group input[type="file"] {
+            padding: 10px 15px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 30px;
+            }
+
+            .section h2 {
+                font-size: 22px;
+            }
+
+            .form-group button {
+                padding: 8px 12px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 24px;
+            }
+
+            .form-group input, .form-group select, .form-group textarea {
+                font-size: 14px;
+            }
+
+            .form-group button {
+                padding: 6px 10px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Pharmacy Integration</h1>
+
+    <!-- Medicine Delivery Form -->
+    <div class="section">
+        <h2>Medicine Delivery</h2>
+        <form action="https://formspree.io/f/xwpkdjln" method="POST">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="address">Delivery Address</label>
+                <textarea id="address" name="address" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="medication">Prescribed Medicine</label>
+                <input type="text" id="medication" name="medication" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Order Medicine</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Prescription Upload Form -->
+    <div class="section">
+        <h2>Upload Prescription</h2>
+        <form enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="prescription">Upload Prescription</label>
+                <input type="file" id="prescription" name="prescription" accept="image/*, .pdf" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Upload Prescription</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Substitute Medicines -->
+    <div class="section">
+        <h2>Find Affordable Alternatives</h2>
+        <form id="substituteForm">
+            <div class="form-group">
+                <label for="medicineName">Enter Prescribed Medicine</label>
+                <input type="text" id="medicineName" name="medicineName" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Get Alternatives</button>
+            </div>
+        </form>
+
+        <div id="substituteResults" class="suggestions">
+            <h3>Affordable Alternatives</h3>
+            <p><strong>Prescribed Medicine:</strong> <span id="prescribedMedicine"></span></p>
+            <ul id="alternativesList">
+                <!-- List of alternatives will appear here -->
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Handle Substitute Medicines form
+    document.getElementById("substituteForm").addEventListener("submit", function(event) {
+        event.preventDefault();  // Prevent page reload
+
+        const medicine = document.getElementById("medicineName").value;
+        document.getElementById("prescribedMedicine").textContent = medicine;
+
+        // For simplicity, we'll use a mock response for alternatives
+        const alternatives =
+            { name: "Affordable Med 1", price: "$10", link: "#" },
+            { name: "Affordable Med 2", price: "$12", link: "#" },
+            { name: "Affordable Med 3", price: "$8", link: "#" }
+        ];
+
+        // Display alternatives
+        const alternativesList = document.getElementById("alternativesList");
+        alternativesList.innerHTML = "";
+        alternatives.forEach(alt => {
+            const li = document.createElement("li");
+            li.innerHTML = `${alt.name} - <strong>${alt.price}</strong> <a href="${alt.link}" target="_blank">Buy Now</a>`;
+            alternativesList.appendChild(li);
+        });
+
+        // Show the results section
+        document.getElementById("substituteResults").style.display = "block";
+    });
+</script>
+
+</body>
+</html>

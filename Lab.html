@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>At-Home Lab Tests</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://img.freepik.com/free-photo/still-life-laboratory-samples_23-2151108831.jpg?t=st=1734607881~exp=1734611481~hmac=7c6435f9325a06b746c45d3829b0c899c7a4d0a0b16221987b2cfd762b237529&w=1060');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .container {
+            width: 90%;
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            backdrop-filter: blur(5px);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin: 12px 0 6px;
+            font-weight: 600;
+            color: #444;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            margin-bottom: 15px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        input:focus, select:focus {
+            border-color: #007BFF;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+            outline: none;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        button:hover {
+            background-color: #0056b3;
+            transform: scale(1.02);
+        }
+        button:active {
+            transform: scale(0.98);
+        }
+        #confirmation-message {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>At-Home Lab Test Scheduling</h2>
+        <form id="lab-test-form" action="https://formspree.io/f/xjkkvzkz" method="POST">
+            <label for="test-type">Select Test Type:</label>
+            <select id="test-type" name="test-type" required>
+                <option value="">Choose a test</option>
+                <option value="Blood Test">Blood Test</option>
+                <option value="Urine Test">Urine Test</option>
+                <option value="ECG">ECG</option>
+                <option value="X-Ray">X-Ray</option>
+            </select>
+
+            <label for="full-name">Full Name:</label>
+            <input type="text" id="full-name" name="full-name" placeholder="Enter your full name" required />
+
+            <label for="phone-number">Phone Number:</label>
+            <input type="tel" id="phone-number" name="phone-number" placeholder="Enter your phone number" required />
+
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" placeholder="Enter your address" required />
+
+            <label for="appointment-date">Preferred Appointment Date:</label>
+            <input type="date" id="appointment-date" name="appointment-date" required />
+
+            <label for="appointment-time">Preferred Appointment Time:</label>
+            <input type="time" id="appointment-time" name="appointment-time" required />
+
+            <button type="submit">Schedule Test</button>
+        </form>
+
+        <div id="confirmation-message">
+            Your appointment has been scheduled successfully! A lab technician will contact you soon.
+        </div>
+    </div>
+</body>
+</html>

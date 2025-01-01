@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscription Plans</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('https://img.freepik.com/free-photo/smiley-woman-home-ordering-items-sale-using-tablet-credit-card_23-2148695624.jpg?t=st=1734702606~exp=1734706206~hmac=39ae96a8da640f7a9d0e67cd9ef8a02fec8fe00217ce4a58c91a71f2ef3e2805&w=900');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            background-attachment: fixed;
+        }
+       .container {
+    background: rgba(255, 255, 255, 0.7); /* Light white background with transparency */
+    border-radius: 15px;
+    padding: 30px;
+    color: #333; /* Ensures the text is visible */
+}
+
+        .plan-card {
+
+            border: none;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        .plan-card:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        .plan-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .plan-price {
+            font-size: 2rem;
+            color: #007bff;
+            margin: 15px 0;
+        }
+        .btn-select {
+            background-color: #007bff;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container my-5">
+        <h1 class="text-center mb-4">Choose Your Subscription Plan</h1>
+        <div class="row">
+            <!-- Free Plan -->
+            <div class="col-md-4 mb-3">
+                <div class="plan-card">
+                    <div class="plan-title">Free Plan</div>
+                    <div class="plan-price">₹0</div>
+                    <ul class="list-unstyled">
+                        <li>Basic wellness tips</li>
+                        <li>Weekly plans only</li>
+                    </ul>
+                    <button class="btn btn-select">Select Plan</button>
+                </div>
+            </div>
+
+            <!-- Basic Plan -->
+            <div class="col-md-4 mb-3">
+                <div class="plan-card">
+                    <div class="plan-title">Basic Plan</div>
+                    <div class="plan-price">₹499 / month</div>
+                    <ul class="list-unstyled">
+                        <li>Mental health, yoga, fitness plans</li>
+                        <li>Daily AI suggestions</li>
+                    </ul>
+                    <button class="btn btn-select">Select Plan</button>
+                </div>
+            </div>
+
+            <!-- Premium Plan -->
+            <div class="col-md-4 mb-3">
+                <div class="plan-card">
+                    <div class="plan-title">Premium Plan</div>
+                    <div class="plan-price">₹999 / month</div>
+                    <ul class="list-unstyled">
+                        <li>Personalized AI plans</li>
+                        <li>Progress tracking features</li>
+                        <li>Gamified challenges</li>
+                    </ul>
+                    <button class="btn btn-select">Select Plan</button>
+                </div>
+            </div>
+
+            <!-- Enterprise Plan -->
+            <div class="col-md-6 mb-3">
+                <div class="plan-card">
+                    <div class="plan-title">Enterprise Plan</div>
+                    <div class="plan-price">₹4,999 / month</div>
+                    <ul class="list-unstyled">
+                        <li>Custom team plans</li>
+                        <li>Wellness analytics for HR</li>
+                        <li>Integration with productivity tools</li>
+                    </ul>
+                    <button class="btn btn-select">Select Plan</button>
+                </div>
+            </div>
+
+            <!-- Ultimate Plan -->
+            <div class="col-md-6 mb-3">
+                <div class="plan-card">
+                    <div class="plan-title">Ultimate Plan</div>
+                    <div class="plan-price">₹9,999 / month</div>
+                    <ul class="list-unstyled">
+                        <li>All features from Enterprise</li>
+                        <li>Dedicated wellness advisor</li>
+                        <li>Early access to new features</li>
+                    </ul>
+                    <button class="btn btn-select">Select Plan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Handle subscription selection
+        const buttons = document.querySelectorAll('.btn-select');
+        buttons.forEach((button) => {
+            button.addEventListener('click', () => {
+                alert(`You selected the ${button.closest('.plan-card').querySelector('.plan-title').textContent}`);
+            });
+        });
+    </script>
+</body>
+</html>

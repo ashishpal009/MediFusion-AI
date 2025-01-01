@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Healthcare Chatbot</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <style>
+      body {
+        background-image: url('https://img.freepik.com/free-vector/hand-drawn-ai-healthcare-illustration_52683-156475.jpg?t=st=1734557194~exp=1734560794~hmac=5aaf29a29ed3ede369a909614deaa617f15d2235218e19209791131750adfbbf&w=740'); /* Add the URL of your background image */
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        color: #333;
+      }
+
+      .chatbox {
+
+        padding: 20px;
+        border-radius: 15px;
+        max-width: 500px;
+        margin: auto;
+        height: 60vh;
+        overflow-y: scroll;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease-in-out;
+      }
+
+      .chatbox:hover {
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+      }
+
+      .message {
+        margin-bottom: 12px;
+        padding: 10px;
+        border-radius: 15px;
+        display: inline-block;
+        max-width: 80%;
+        word-wrap: break-word;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .user-message {
+        background-color: #007bff;
+        color: white;
+        text-align: right;
+        animation: slideInRight 0.5s ease-out;
+      }
+
+      .bot-message {
+        background-color: #28a745;
+        color: white;
+        text-align: left;
+        animation: slideInLeft 0.5s ease-out;
+      }
+
+      @keyframes slideInRight {
+        from {
+          transform: translateX(100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+
+      @keyframes slideInLeft {
+        from {
+          transform: translateX(-100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+
+      .input-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 12px;
+        border-radius: 8px;
+      }
+
+      input[type="text"] {
+        width: 70%;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+      }
+
+      input[type="text"]:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
+      }
+
+      button {
+        padding: 12px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        margin-left: 8px;
+        transition: all 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+        transform: translateY(-2px);
+      }
+
+      button:active {
+        transform: translateY(1px);
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="container mt-4">
+      <h2 class="text-center text-black">💬 Healthcare Chatbot 🏥 | Ask Anything About Health</h2>
+      <div class="chatbox" id="chatbox">
+        <!-- Chat messages will appear here -->
+      </div>
+
+      <div class="input-container">
+        <input type="text" id="userInput" class="form-control" placeholder="Ask about health..." />
+        <button onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+
+    <script>
+      const chatbox = document.getElementById('chatbox');
+      const userInput = document.getElementById('userInput');
+
+      // Function to send the user's message and get a simple response
+      function sendMessage() {
+        const userMessage = userInput.value;
+        if (userMessage.trim() === "") return;
+
+        // Display the user's message
+        displayMessage(userMessage, 'user');
+
+        // Clear the input field
+        userInput.value = '';
+
+        // Get a response from the bot (pre-set logic)
+        const botResponse = getBotResponse(userMessage);
+
+        // Display the bot's response
+        displayMessage(botResponse, 'bot');
+      }
+
+      // Function to display messages in the chatbox
+      function displayMessage(message, sender) {
+        const messageElement = document.createElement('div');
+        messageElement.classList.add('message');
+        messageElement.classList.add(sender === 'user' ? 'user-message' : 'bot-message');
+        messageElement.textContent = message;
+        chatbox.appendChild(messageElement);
+        chatbox.scrollTop = chatbox.scrollHeight;  // Scroll to the bottom
+      }
+
+      // Simple function to generate a bot response based on the user's message
+      function getBotResponse(userMessage) {
+        const message = userMessage.toLowerCase();
+        if (message.includes('fever')) {
+        return 'Fever is a common symptom of many illnesses like flu, cold, or infections. Rest, hydration, and over-the-counter fever reducers may help.';
+    } else if (message.includes('headache')) {
+        return 'Headaches can be caused by stress, dehydration, or sinus issues. Try to rest, stay hydrated, and consider over-the-counter pain relievers.';
+    } else if (message.includes('cough')) {
+        return 'A cough can be caused by a variety of factors, such as allergies, a cold, or even a respiratory infection. A doctor can help determine the cause.';
+    } else if (message.includes('sore throat')) {
+        return 'A sore throat can be due to viral infections like the common cold or even bacterial infections like strep throat. Drink warm liquids and consider throat lozenges for relief.';
+    } else if (message.includes('cold')) {
+        return 'The common cold is caused by a viral infection. Rest, fluids, and over-the-counter medication may help relieve symptoms.';
+    } else if (message.includes('flu')) {
+        return 'Flu symptoms include fever, chills, sore throat, and fatigue. If you suspect the flu, it’s best to rest and stay hydrated, and see a doctor if symptoms worsen.';
+    } else if (message.includes('exercise')) {
+        return 'Exercise is great for overall health! It can help reduce stress, improve heart health, and increase energy. Just be sure to start slowly and consult with a doctor if you have any health concerns.';
+    } else if (message.includes('diet')) {
+        return 'A healthy diet should include fruits, vegetables, whole grains, and lean proteins. Avoid processed foods and sugary snacks for better health.';
+    } else if (message.includes('mental health')) {
+        return 'Taking care of your mental health is as important as physical health. Try activities like mindfulness, meditation, and talking to a counselor or therapist if needed.';
+    } else if (message.includes('skin rash')) {
+        return 'Skin rashes can be caused by allergies, infections, or irritants. It’s important to avoid scratching and consider seeing a doctor for a proper diagnosis.';
+    } else if (message.includes('allergies')) {
+        return 'Allergies can cause sneezing, itching, and congestion. Over-the-counter antihistamines can help, but consult a doctor if symptoms are severe.';
+    } else if (message.includes('stomach ache')) {
+        return 'Stomach aches can be due to indigestion, stress, or infections. Drink plenty of water, rest, and consider antacids or consult a doctor for more severe cases.';
+    } else if (message.includes('back pain')) {
+        return 'Back pain can be caused by poor posture, muscle strain, or conditions like arthritis. Rest, gentle stretching, and proper posture may help, but see a doctor if pain persists.';
+    } else if (message.includes('nausea')) {
+        return 'Nausea can result from a variety of causes, including indigestion, motion sickness, or infections. Stay hydrated, avoid strong smells, and consult a doctor if symptoms worsen.';
+    } else if (message.includes('dizziness')) {
+        return 'Dizziness can be caused by dehydration, low blood pressure, or inner ear issues. Drink water, rest, and consult a doctor if dizziness persists or is accompanied by other symptoms.';
+    } else if (message.includes('fatigue')) {
+        return 'Fatigue can result from poor sleep, stress, or underlying health conditions. Make sure to get enough rest, eat well, and manage stress. Consult a doctor if fatigue is persistent or severe.';
+    } else if (message.includes('shortness of breath')) {
+        return 'Shortness of breath can be caused by conditions like asthma, allergies, or heart problems. If you experience this, especially with chest pain, seek medical attention immediately.';
+    } else if (message.includes('high blood pressure')) {
+        return 'High blood pressure can lead to serious health issues like heart disease and stroke. It is important to monitor your blood pressure, reduce salt intake, exercise regularly, and avoid stress.';
+    } else if (message.includes('chest pain')) {
+        return 'Chest pain could indicate serious conditions such as heart disease. If you experience chest pain, especially with shortness of breath, dizziness, or nausea, seek medical attention immediately.';
+    } else if (message.includes('insomnia')) {
+        return 'Insomnia can be caused by stress, anxiety, or poor sleep habits. Establishing a bedtime routine, avoiding caffeine, and managing stress can help improve sleep quality.';
+    } else if (message.includes('constipation')) {
+        return 'Constipation can be due to dehydration, lack of fiber, or changes in diet. Eating fiber-rich foods, drinking plenty of water, and staying active can help relieve constipation.';
+    } else if (message.includes('diarrhea')) {
+        return 'Diarrhea can be caused by infections, food intolerance, or stress. Drink plenty of fluids to stay hydrated, and consider an over-the-counter treatment if necessary. See a doctor if it lasts more than a few days.';
+    } else if (message.includes('vomiting')) {
+        return 'Vomiting can occur due to food poisoning, infections, or even stress. Stay hydrated and rest. If vomiting continues for more than 24 hours or is accompanied by severe symptoms, seek medical attention.';
+    } else if (message.includes('urinary tract infection')) {
+        return 'UTIs can cause symptoms like frequent urination, burning sensations, and cloudy urine. Drink plenty of water, and consult a doctor for a proper diagnosis and treatment.';
+    } else if (message.includes('arthritis')) {
+        return 'Arthritis causes inflammation and pain in the joints. Regular physical activity, proper rest, and anti-inflammatory medications can help manage symptoms.';
+    } else if (message.includes('diabetes')) {
+        return 'Diabetes is a condition that affects how your body processes blood sugar. A balanced diet, regular exercise, and medication can help manage blood sugar levels.';
+    } else if (message.includes('hypertension')) {
+        return 'Hypertension (high blood pressure) can lead to serious health issues like stroke or heart disease. It’s important to monitor your blood pressure and follow a healthy lifestyle to prevent complications.';
+    } else if (message.includes('dehydration')) {
+        return 'Dehydration can cause symptoms like dry mouth, dizziness, and fatigue. Make sure to drink plenty of fluids, especially water, and avoid excessive caffeine and alcohol.';
+    } else {
+        return 'I\'m not sure about that. Could you please ask another health-related question?';
+    }
+}
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+  </body>
+</html>

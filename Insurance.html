@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Insurance Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://img.freepik.com/free-photo/doctor-filling-up-life-insurance-form_53876-20493.jpg?t=st=1734702948~exp=1734706548~hmac=918d91236e80c4218a6be8afca2341a283b8cd8fd6097bbd98ec99468e7a8cd0&w=900');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            border-radius: 10px;
+            padding: 20px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: bold;
+        }
+        input, textarea, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        button:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Health Insurance Application</h2>
+        <form id="insurance-form" action="https://www.tataaia.com/campaign/TATA-AIA-Life-Insurance-Term-Plan-Calculator-Sampoorn-Raksha-Promise.html?utm_code=NLAKWSRSBINGGG595&camcode=1235&utm_content=Generic&cid=bing-search:cpc:ls_srs_term_generic_bing:generic+plan:insurance_plans:1235&ccflow=DSF&gclid=b4df81f76db91de901b1e6936bfc7135&utm_source=bing-search&utm_medium=cpc&utm_campaign=LS_SRS_Term_Generic_Bing&utm_adgroup=&utm_term=insurance%20plans&utm_network=o&utm_matchtype=p&utm_device=c&utm_placement=&utm_Sitelink=&msclkid=b4df81f76db91de901b1e6936bfc7135" method="get" target="_blank">
+            <label for="username">Name:</label>
+            <input type="text" id="username" name="username" required placeholder="Enter your name">
+
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required placeholder="Enter your age">
+
+            <label for="past_health_problems">Past Health Issues:</label>
+            <textarea id="past_health_problems" name="past_health_problems" rows="4" placeholder="Enter any past health issues"></textarea>
+
+            <label for="present_health_problems">Current Health Issues:</label>
+            <textarea id="present_health_problems" name="present_health_problems" rows="4" placeholder="Enter any present health issues"></textarea>
+
+            <button type="submit">Submit and Get Insurance Plan</button>
+        </form>
+    </div>
+</body>
+</html>

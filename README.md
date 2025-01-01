@@ -76,5 +76,4 @@ Our vision is to create a smarter, more equitable healthcare system with:
 
 ---
 
-## 📂 Folder Structure  
 
